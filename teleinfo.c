@@ -290,6 +290,12 @@ int LitValEtiquettes()
                 return 0 ;
             }
         }
+        else{   //si l'étiquette n'est pas trouvée dans la trame retourne une erreur de checksum
+                syslog(LOG_ERR, "Donnee teleinfo non toruvee [%s] (essai %d) !\n", etiquettesPV[id], no_essais) ;
+                erreur_checksum = 1 ;
+                return 0 ;
+
+        }
     }
     // Remplace chaine "HP.." ou "HC.." par "HP ou "HC".
     valeurs[5][2] = '\0' ;
@@ -329,6 +335,12 @@ int LitValEtiquettesPV()
                 erreur_checksum = 1 ;
                 return 0 ;
             }
+        }
+        else{    //si l'étiquette n'est pas trouvée dans la trame retourne une erreur de checksum
+                syslog(LOG_ERR, "Donnee teleinfo non toruvee [%s] (essai %d) !\n", etiquettesPV[id], no_essais) ;
+                erreur_checksum = 1 ;
+                return 0 ;
+
         }
     }
     // Remplace la chaine "HP.." ou "HC.." ou "HT.. "par "HP ou "HC" ou "HT".  (chaine pointée par PTEC)
